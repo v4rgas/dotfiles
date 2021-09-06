@@ -94,9 +94,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- Additional Plugins
 lvim.plugins = {
-  {"lunarvim/colorschemes"},
   {"lervag/vimtex"},
-  -- {"xuhdev/vim-latex-live-preview"},
 --     {"folke/tokyonight.nvim"}, {
 --         "ray-x/lsp_signature.nvim",
 --         config = function() require"lsp_signature".on_attach() end,
@@ -105,9 +103,6 @@ lvim.plugins = {
 }
 
 -- latex plugin config
--- vim.g.livepreview_previewer = 'zathura'
--- vim.g.livepreview_cursorhold_recompile = 0
-
 lvim.builtin.which_key.mappings["t"] = {
     name = "+Latex",
     c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
