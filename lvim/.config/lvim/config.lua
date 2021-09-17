@@ -50,7 +50,7 @@ lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.nvimtree.hide_dotfiles = 0
 
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {mantained}
+lvim.builtin.treesitter.ensure_installed = {}
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
@@ -80,20 +80,9 @@ lvim.builtin.treesitter.highlight.enabled = true
 --   end
 -- end
 
--- set a formatter if you want to override the default lsp one (if it exists)
--- lvim.lang.python.formatters = {
---   {
---     exe = "black",
---     args = {}
---   }
--- }
--- set an additional linter
--- lvim.lang.python.linters = {
---   {
---     exe = "flake8",
---     args = {}
---   }
--- }
+-- PYTHON
+  lvim.lang.python.formatters = { { exe = 'autopep8' } }
+  lvim.lang.python.linters = { { exe = 'flake8' } }
 
 -- Additional Plugins
 lvim.plugins = {
@@ -135,4 +124,3 @@ lvim.builtin.which_key.mappings["t"] = {
 -- lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 -- }
-
