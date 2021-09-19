@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# plugins=(git, vi-mode)
+plugins=(vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,3 +114,6 @@ alias update-lvim="git -C "/home/juan/.local/share/lunarvim/lvim/" pull"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=~/.local/bin/:$PATH
+
+#ESC <-> CAPSLOCK 
+setxkbmap -option caps:swapescape
