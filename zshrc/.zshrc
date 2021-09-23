@@ -113,7 +113,7 @@ alias update-lvim="git -C "/home/juan/.local/share/lunarvim/lvim/" pull"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH=~/.local/bin/:$PATH
+export PATH="$PATH:$HOME/.local/bin"
 
 #ESC <-> CAPSLOCK 
-setxkbmap -option caps:swapescape
+#setxkbmap -option caps:swapescape
