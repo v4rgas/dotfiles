@@ -21,21 +21,16 @@ lvim.builtin.treesitter.ensure_installed = {}
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
--- Python
-  lvim.lang.python.formatters = { { exe = 'autopep8' } }
-  lvim.lang.python.linters = { { exe = 'flake8' } }
+-- python
+lvim.lang.python.formatters = { { exe = 'autopep8' } }
+lvim.lang.python.linters = { { exe = 'flake8' } }
 
--- Additional Plugins
+-- additional Plugins
 lvim.plugins = {
   {"lervag/vimtex"},
---     {"folke/tokyonight.nvim"}, {
---         "ray-x/lsp_signature.nvim",
---         config = function() require"lsp_signature".on_attach() end,
---         event = "InsertEnter"
---     }
 }
 
--- Latex plugin config
+-- latex plugin config
 lvim.builtin.which_key.mappings["t"] = {
     name = "+Latex",
     c = { "<cmd>VimtexCompile<cr>", "Toggle Compilation Mode" },
@@ -48,7 +43,7 @@ lvim.builtin.which_key.mappings["t"] = {
     p = { "<cmd>TexlabForward<cr>", "Preview with Texlab" },
   }
 
--- Compile on initialization, cleanup on quit
+-- compile on initialization, cleanup on quit
   vim.api.nvim_exec(
     [[
         augroup vimtex_event_1
