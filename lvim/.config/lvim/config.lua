@@ -28,6 +28,12 @@ lvim.lang.python.linters = { { exe = 'flake8' } }
 -- additional Plugins
 lvim.plugins = {
   {"lervag/vimtex"},
+  {
+    "iamcco/markdown-preview.nvim",
+      ft = "markdown",
+      run = ":call mkdp#util#install()",
+      event = "BufRead",
+  },
 }
 
 -- latex plugin config
