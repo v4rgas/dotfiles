@@ -4,19 +4,11 @@
 
 # terminal emulator
 super + Return
-  alacritty	
+	alacritty
 
-# web browser
-super + shift + Return
-  firefox
-  
 # program launcher
 super + @space
 	rofi -show drun
-
-# file explorer
-super + e
-  alacritty -e ranger
 
 # make sxhkd reload its configuration files:
 super + Escape
