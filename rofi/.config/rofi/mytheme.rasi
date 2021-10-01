@@ -7,7 +7,7 @@
     background-color:      Black;
     border-color:          White;
     text-color:           White;
-    font:            "MesloLFG NF 10";
+    font:            "Monospace 8";
 }
 
 window {
