@@ -47,8 +47,7 @@ colors:
 # Font configuration
 font:
   normal:
-    family: DejaVuSansMono Nerd Font
-    # family: MesloLGS NF 
+    family: monospace
 
 # Background opacity
 background_opacity: 0.95
