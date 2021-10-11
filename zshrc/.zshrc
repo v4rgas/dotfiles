@@ -120,5 +120,8 @@ export GPG_TTY=$(tty)
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
+#Setting up keyboard layout
+setxkbmap -layout us -variant altgr-intl
+
 #ESC <-> CAPSLOCK 
 #setxkbmap -option caps:swapescape

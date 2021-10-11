@@ -17,9 +17,17 @@ super + Escape
 # file explorer
 super + e
   alacritty -e ranger
-
+# spotify
 super + s
   alacritty -e ~/scripts/launchspt
+
+#screenshots
+Print
+  flameshot gui
+
+#poweroff
+super + shift + p
+  poweroff
 #
 # bspwm hotkeys
 #
