@@ -26,7 +26,7 @@ font-1 = Monospace:weight=bold:size=8:hintstyle=hintslight;2
 
 modules-left = bspwm
 modules-center =
-modules-right = date
+modules-right = battery date
 
 tray-position = none
 
@@ -64,6 +64,20 @@ label-empty = " %name% "
 label-empty-foreground = ${colors.fgalt}
 
 format = <label-state> <label-mode>
+
+[module/battery]
+type = internal/battery
+
+full-at = 97
+
+battery = BAT0
+adapter = AC
+
+poll-interval = 5
+
+label-charging = +%percentage%%
+label-discharging = -%percentage%%
+
 
 [module/date]
 type = internal/date

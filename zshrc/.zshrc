@@ -124,4 +124,4 @@ export PATH="$PATH:$HOME/.local/bin"
 setxkbmap -layout us -variant altgr-intl
 
 #ESC <-> CAPSLOCK 
-#setxkbmap -option caps:swapescape
+setxkbmap -option caps:swapescape
