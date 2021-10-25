@@ -1,9 +1,7 @@
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
 -- general
 lvim.format_on_save = true
 lvim.lint_on_save = true
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "base16-classic-dark"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.log.level = "warn"
@@ -27,6 +25,7 @@ lvim.lang.python.linters = { { exe = 'flake8' } }
 
 -- additional Plugins
 lvim.plugins = {
+  {'chriskempson/base16-vim'},
   {"lervag/vimtex"},
   {
     "iamcco/markdown-preview.nvim",
