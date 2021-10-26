@@ -23,7 +23,7 @@ super + s
 
 #screenshots
 Print
-  flameshot gui
+  import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png
 
 #poweroff
 super + shift + p

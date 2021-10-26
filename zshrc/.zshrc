@@ -106,7 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias update-lvim="git -C "/home/juan/.local/share/lunarvim/lvim/" pull"
 alias f="ranger"
 alias e="lvim"
 
