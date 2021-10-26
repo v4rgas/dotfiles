@@ -23,11 +23,21 @@ super + s
 
 #screenshots
 Print
-  import -window root ~/Pictures/$(date '+%Y%m%d-%H%M%S').png
+  maim -s | xclip -selection clipboard -t image/png
+
+shift + Print
+  maim -s ~/Pictures/$(date +%s).png
+
+ctrl + Print
+  maim ~/Pictures/$(date +%s).png
+
+ctrl + shift + Print 
+  maim | xclip -selection clipboard -t image/png
 
 #poweroff
 super + shift + p
-  poweroff
+  systemctl poweroff
+
 #
 # bspwm hotkeys
 #
