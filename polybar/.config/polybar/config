@@ -7,7 +7,7 @@ include-file = ~/.config/polybar/colors
 
 [bar/bottom]
 width = 100%
-height = 18
+height = 15
 bottom = true
 radius = 0
 fixed-center = false
@@ -15,14 +15,14 @@ fixed-center = false
 background = ${colors.bgmain}
 foreground = ${colors.fgmain}
 
-padding-left = 0
-padding-right = 1
+padding-left = 2
+padding-right = 2
 
 module-margin-left = 0
 module-margin-right = 2
 
-font-0 = Monospace:size=8:hintstyle=hintslight;2
-font-1 = Monospace:weight=bold:size=8:hintstyle=hintslight;2
+font-0 = Monospace:size=10:hintstyle=hintslight;2
+font-1 = Monospace:weight=bold:size=10:hintstyle=hintslight;2
 
 modules-left = bspwm
 modules-center =
@@ -50,13 +50,13 @@ label-private-foreground = ${colors.blue}
 label-marked = *
 label-marked-foreground = ${colors.red}
 
-label-focused = "[%name%]"
+label-focused = " %name% "
 label-focused-font = 2
 
-label-occupied = " %name%^ "
+label-occupied = " %name%^"
 label-occupied-foreground = ${colors.fgalt}
 
-label-urgent = " %name%! "
+label-urgent = " %name%!"
 label-urgent-background = ${colors.red}
 label-urgent-foreground = ${colors.bgmain}
 
