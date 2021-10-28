@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 
+# Default text editor
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -116,7 +117,7 @@ alias e="lvim"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-#Invoking GPG-AGENT
+# Invoking GPG-AGENT
 export GPG_TTY=$TTY
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
