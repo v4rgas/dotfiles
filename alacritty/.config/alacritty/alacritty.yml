@@ -47,7 +47,7 @@ colors:
 font:
   normal:
     family: monospace
-  size: 10.0
+  size: 11.0
 
 # Background opacity
 background_opacity: 1
