@@ -108,9 +108,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Aliases
+alias update-lvim="git -C "/home/juan/.local/share/lunarvim/lvim/" pull;lvim +LvimUpdate +q"
 alias f="ranger"
 alias e="lvim"
 
@@ -128,4 +127,4 @@ export PATH="$PATH:$HOME/.local/bin"
 setxkbmap -layout us -variant altgr-intl
 
 #ESC <-> CAPSLOCK 
-setxkbmap -option caps:swapescape
+# setxkbmap -option caps:swapescape

@@ -20,8 +20,8 @@ lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
 -- python
-lvim.lang.python.formatters = { { exe = 'autopep8' } }
-lvim.lang.python.linters = { { exe = 'flake8' } }
+-- lvim.lang.python.formatters = { { exe = 'autopep8' } }
+-- lvim.lang.python.linters = { { exe = 'flake8' } }
 
 -- additional Plugins
 lvim.plugins = {

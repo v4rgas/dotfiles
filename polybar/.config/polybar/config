@@ -21,12 +21,12 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 2
 
-font-0 = Monospace:size=10:hintstyle=hintslight;2
-font-1 = Monospace:weight=bold:size=10:hintstyle=hintslight;2
+font-0 = Monospace:size=10:hintstyle=hintslight;5;5
+font-1 = Monospace:weight=bold:size=10:hintstyle=hintslight;5;5
 
 modules-left = bspwm
 modules-center =
-modules-right = battery date
+modules-right = temperature battery date
 
 tray-position = none
 
@@ -85,3 +85,7 @@ interval = 60
 
 date = %a %e %b, %R
 label = %date%
+
+[module/temperature]
+type = internal/temperature
+hwmon-path = /sys/devices/platform/PNP0C14:00/wmi_bus/wmi_bus-PNP0C14:00/DEADBEEF-2001-0000-00A0-C90629100000/hwmon/hwmon2/temp3_input
