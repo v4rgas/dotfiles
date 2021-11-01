@@ -6,6 +6,10 @@
 super + {_,shift + }Return
 	{alacritty, brave}
 
+# discord
+super + d
+  brave --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl
+
 # program launcher
 super + @space
 	rofi -show drun
