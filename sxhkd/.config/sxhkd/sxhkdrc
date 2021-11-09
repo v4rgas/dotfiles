@@ -16,15 +16,15 @@ super + Escape
 
 # super + d are shortcuts for apps
 # file explorer
-super + d ; f
+super + s ; f
   alacritty -e ranger
 
 # spotify
-super + d ; s
+super + s ; s
   alacritty -e ~/scripts/launchspt
 
 # discord
-super + d ; d
+super + s ; d
   brave --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl
 
 #screenshots
