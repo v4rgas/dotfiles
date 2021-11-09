@@ -40,9 +40,9 @@ ctrl + Print
 ctrl + shift + Print 
   maim | xclip -selection clipboard -t image/png
 
-#poweroff
-super + shift + p
-  systemctl poweroff
+#power options
+super + shift + p ; {p, r, s}
+  systemctl {poweroff, reboot, suspend}
 
 #
 # bspwm hotkeys
