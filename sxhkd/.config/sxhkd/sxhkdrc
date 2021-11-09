@@ -6,10 +6,6 @@
 super + {_,shift + }Return
 	{alacritty, brave}
 
-# discord
-super + d
-  brave --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl
-
 # program launcher
 super + @space
 	rofi -show drun
@@ -18,12 +14,18 @@ super + @space
 super + Escape
 	pkill -USR1 -x sxhkd
 
+# super + d are shortcuts for apps
 # file explorer
-super + e
+super + d ; f
   alacritty -e ranger
+
 # spotify
-super + s
+super + d ; s
   alacritty -e ~/scripts/launchspt
+
+# discord
+super + d ; d
+  brave --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl
 
 #screenshots
 Print
