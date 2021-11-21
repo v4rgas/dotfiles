@@ -27,6 +27,10 @@ super + s ; s
 super + s ; d
   brave --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl
 
+# whatsapp
+super + s ; w
+  brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
+
 #screenshots
 Print
   maim -s | xclip -selection clipboard -t image/png

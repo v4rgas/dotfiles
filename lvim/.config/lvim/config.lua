@@ -1,7 +1,7 @@
 -- general
 lvim.format_on_save = true
 lvim.lint_on_save = true
-lvim.colorscheme = "base16-classic-dark"
+lvim.colorscheme = "base16-bright"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.log.level = "warn"

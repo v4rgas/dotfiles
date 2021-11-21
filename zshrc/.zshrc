@@ -13,7 +13,6 @@ source $ZSH/oh-my-zsh.sh
 # Default text editor
 export EDITOR='nvim'
 export VISUAL='nvim'
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
 # Aliases
 alias update-lvim="git -C "/home/juan/.local/share/lunarvim/lvim/" pull;lvim +LvimUpdate +q"
