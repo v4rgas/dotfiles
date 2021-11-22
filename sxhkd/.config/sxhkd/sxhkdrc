@@ -32,17 +32,18 @@ super + s ; w
   brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
 #screenshots
+# shift -> fullscreen, ctrl -> save
 Print
   maim -s | xclip -selection clipboard -t image/png
 
-shift + Print
-  maim -s ~/Pictures/$(date +%s).png
+shift + Print 
+  maim | xclip -selection clipboard -t image/png
 
 ctrl + Print
-  maim ~/Pictures/$(date +%s).png
+  maim -s ~/Pictures/$(date +%s).png
 
-ctrl + shift + Print 
-  maim | xclip -selection clipboard -t image/png
+ctrl + shift + Print
+  maim ~/Pictures/$(date +%s).png
 
 #power options
 super + shift + p ; {p, r, s}
