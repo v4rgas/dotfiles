@@ -1,3 +1,4 @@
 configuration {
-	theme: "mytheme.rasi";
 }
+@theme "mytheme.rasi"
+
