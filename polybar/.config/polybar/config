@@ -6,8 +6,7 @@ margin-bottom = 0
 include-file = ~/.config/polybar/colors
 
 [bar/bottom]
-width = 100%
-height = 15
+width = 100% height = 15
 bottom = true
 radius = 0
 fixed-center = false
@@ -25,7 +24,7 @@ font-0 = Monospace:size=10:hintstyle=hintslight;3
 font-1 = Monospace:weight=bold:size=10:hintstyle=hintslight;3
 
 modules-left = bspwm
-modules-center =
+modules-center = pulseaudio
 modules-right = temperature battery date
 
 tray-position = none
@@ -89,3 +88,7 @@ label = %date%
 [module/temperature]
 type = internal/temperature
 hwmon-path = /sys/devices/platform/PNP0C14:00/wmi_bus/wmi_bus-PNP0C14:00/DEADBEEF-2001-0000-00A0-C90629100000/hwmon/hwmon4/temp3_input
+
+[module/pulseaudio]
+type = internal/pulseaudio
+interval = 1
