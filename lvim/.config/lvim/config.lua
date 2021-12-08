@@ -3,25 +3,18 @@ lvim.format_on_save = true
 lvim.lint_on_save = true
 lvim.colorscheme = "base16-bright"
 
--- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.leader = "space"
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 lvim.builtin.dashboard.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
-lvim.builtin.nvimtree.hide_dotfiles = 0
 
-lvim.builtin.treesitter.ensure_installed = {}
+lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
-
--- python
--- lvim.lang.python.formatters = { { exe = 'autopep8' } }
--- lvim.lang.python.linters = { { exe = 'flake8' } }
 
 -- additional Plugins
 lvim.plugins = {
