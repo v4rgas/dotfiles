@@ -1,7 +1,6 @@
 #
 # wm independent hotkeys
 #
-
 # terminal emulator and browser
 super + {_,shift + }Return
 	{alacritty, brave}
@@ -31,7 +30,7 @@ super + s ; d
 super + s ; w
   brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
-#screenshots
+# screenshots
 # shift -> fullscreen, ctrl -> save
 Print
   maim -s | xclip -selection clipboard -t image/png
@@ -45,9 +44,19 @@ ctrl + Print
 ctrl + shift + Print
   maim ~/Pictures/$(date +%s).png
 
-#power options
+# power options
 super + shift + p ; {p, r, s}
   systemctl {poweroff, reboot, suspend}
+
+# volume hotkeys
+XF86AudioRaiseVolume
+  pactl set-sink-volume @DEFAULT_SINK@ +1000
+
+XF86AudioLowerVolume
+  pactl set-sink-volume @DEFAULT_SINK@ -1000
+
+XF86AudioMute
+  pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #
 # bspwm hotkeys
