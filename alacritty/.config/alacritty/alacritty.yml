@@ -47,5 +47,5 @@ font:
     family: monospace
   size: 12
 
-# Background opacity
-background_opacity: 1
+# Window opacity
+window.opacity: 1
