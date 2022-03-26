@@ -3,7 +3,7 @@
 #
 # terminal emulator and browser
 super + {_,shift + }Return
-	{alacritty, brave}
+	{alacritty, firefox}
 
 # program launcher
 super + @space
@@ -21,14 +21,6 @@ super + s ; f
 # spotify
 super + s ; s
   alacritty -e ~/scripts/launchspt
-
-# discord
-super + s ; d
-  brave --profile-directory=Default --app-id=magkoliahgffibhgfkmoealggombgknl
-
-# whatsapp
-super + s ; w
-  brave --profile-directory=Default --app-id=hnpfjngllnobngcgfapefoaidbinmjnm
 
 # screenshots
 # shift -> fullscreen, ctrl -> save

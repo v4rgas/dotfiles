@@ -7,7 +7,7 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.leader = "space"
 
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
@@ -18,15 +18,32 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 lvim.lsp.automatic_servers_installation = true
 
--- lvim.g['neotex_delay'] = 500
--- lvim.builtin.neotex_enabled = 2
+
+
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    command = "rubocop",
+    filetypes = { "ruby"},
+  },
+}
+
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  {
+    command = "rubocop",
+    filetypes = { "ruby"},
+  },
+}
+
+
 
 -- additional Plugins
 lvim.plugins = {
-  {'chriskempson/base16-vim'},
+  -- {"lunarvim/colorschemes"},
+  {"RRethy/nvim-base16"},
   {"lervag/vimtex"},
-  -- {'donRaphaco/neotex'},
-  -- {'xuhdev/vim-latex-live-preview'},
   {
     "iamcco/markdown-preview.nvim",
       ft = "markdown",

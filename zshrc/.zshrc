@@ -26,8 +26,11 @@ alias e="lvim"
 export GPG_TTY=$TTY
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$GEM_HOME/bin"
 
 #Setting up keyboard layout
 setxkbmap -layout us -variant altgr-intl
