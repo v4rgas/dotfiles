@@ -23,6 +23,10 @@ formatters.setup {
     filetypes = { "ruby" },
   },
   {
+    command = "prettier",
+    filetypes = { "html", "css" },
+  },
+  {
     command = "eslint_d",
     filetypes = { "javascript" },
   },
@@ -33,6 +37,10 @@ linters.setup {
   {
     command = "rubocop",
     filetypes = { "ruby" },
+  },
+  {
+    command = "prettier",
+    filetypes = { "html", "css" },
   },
   {
     command = "eslint_d",
