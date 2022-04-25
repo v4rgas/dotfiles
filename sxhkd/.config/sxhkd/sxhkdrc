@@ -24,16 +24,16 @@ super + s ; s
 
 # screenshots
 # shift -> fullscreen, ctrl -> save
-Print
+Print; c; s
   maim -s | xclip -selection clipboard -t image/png
 
-shift + Print 
+Print; c; f
   maim | xclip -selection clipboard -t image/png
 
-ctrl + Print
+Print; s; s
   maim -s ~/Pictures/$(date +%s).png
 
-ctrl + shift + Print
+Print; s; f
   maim ~/Pictures/$(date +%s).png
 
 # power options
@@ -93,10 +93,6 @@ super + {h,j,k,l}
 super + shift + {h,j,k,l}
   ~/.config/sxhkd/bspwm_smartmove {west,south,north,east}
 
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
 # focus the next/previous window in the current desktop
 super + {_,shift + }c
 	bspc node -f {next,prev}.local.!hidden.window
@@ -109,21 +105,13 @@ super + bracket{left,right}
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 # Focus a floating window / Cycle floating windows.
 super + {_,shift + }g
-	bspc node 'focused.floating#{next,prev}.local.!hidden.floating' -f \
-	    || bspc node 'last.local.!focused.!hidden.floating' -f \
-	    || bspc node  'any.local.!focused.!hidden.floating' -f
+	bspc node 'focused.floating#{next,prev}.local.!hidden.floating' -f \ || bspc node 'last.local.!focused.!hidden.floating' -f \ || bspc node  'any.local.!focused.!hidden.floating' -f
 
 #
 # preselect
