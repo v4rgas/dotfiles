@@ -16,6 +16,8 @@ lvim.builtin.nvimtree.show_icons.git = 0
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
+vim.g.spellang = "es,en"
+
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
   {
@@ -39,10 +41,6 @@ linters.setup {
     filetypes = { "ruby" },
   },
   {
-    command = "prettier",
-    filetypes = { "html", "css" },
-  },
-  {
     command = "eslint_d",
     filetypes = { "javascript" },
   },
@@ -52,7 +50,6 @@ linters.setup {
 
 -- additional Plugins
 lvim.plugins = {
-  -- {"lunarvim/colorschemes"},
   { "RRethy/nvim-base16" },
   { "lervag/vimtex" },
   {

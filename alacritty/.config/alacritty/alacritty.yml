@@ -49,3 +49,7 @@ font:
 
 # Window opacity
 window.opacity: 1
+
+# Key Bindings
+key_bindings:
+  - { key: N,   mods: Control|Shift, action: SpawnNewInstance }
