@@ -3,7 +3,7 @@
 #
 # terminal emulator and browser
 super + {_,shift + }Return
-	{alacritty, firefox}
+	{alacritty, xdg-open about:blank}
 
 # program launcher
 super + @space
