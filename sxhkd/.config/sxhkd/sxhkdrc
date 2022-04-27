@@ -3,7 +3,7 @@
 #
 # terminal emulator and browser
 super + {_,shift + }Return
-	{alacritty, xdg-open about:blank}
+	{alacritty, xdg-open https://}
 
 # program launcher
 super + @space
