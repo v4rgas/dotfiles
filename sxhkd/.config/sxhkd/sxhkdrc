@@ -107,7 +107,12 @@ super + {grave,Tab}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} 'focused:^{1-9,10}'
+
+# move and switch windows between monitors
+super + {_,shift +} {comma, period}
+    bspc {monitor --focus,node --to-monitor} {prev,next}
+
 
 # Focus a floating window / Cycle floating windows.
 super + {_,shift + }g

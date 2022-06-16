@@ -1,5 +1,4 @@
 -- general
-
 lvim.format_on_save = true
 lvim.lint_on_save = true
 lvim.colorscheme = "base16-bright"
@@ -13,10 +12,13 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
 
-lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
-vim.g.spellang = "es,en"
+lvim.lsp.automatic_servers_installation = false
+
+local opts = {}
+require("lvim.lsp.manager").setup("pyright", opts)
+
 
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
@@ -26,11 +28,15 @@ formatters.setup {
   },
   {
     command = "prettier",
-    filetypes = { "html", "css" },
+    filetypes = { "html", "css", "eruby" },
   },
   {
     command = "eslint_d",
-    filetypes = { "javascript" },
+    filetypes = { "javascript", "javascriptreact" },
+  },
+  {
+    command = "autopep8",
+    filetypes = { "python" },
   },
 }
 
@@ -41,12 +47,10 @@ linters.setup {
     filetypes = { "ruby" },
   },
   {
-    command = "eslint_d",
-    filetypes = { "javascript" },
+    command = "eslint",
+    filetypes = { "javascript", "javascriptreact" },
   },
 }
-
-
 
 -- additional Plugins
 lvim.plugins = {
