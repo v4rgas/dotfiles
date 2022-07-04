@@ -23,13 +23,8 @@ export GPG_TTY=$TTY
 export PATH="$PATH:$HOME/.local/bin"
 
 # Aliases
-alias update-lvim="git -C "/home/juan/.local/share/lunarvim/lvim/" pull;lvim +LvimUpdate +q"
-alias f="ranger"
-alias e="lvim"
-
-
-# Setting up keyboard layout
-setxkbmap -layout us -variant altgr-intl
+alias f="thunar ."
+alias e="nvim ."
 
 #ESC <-> CAPSLOCK 
 # setxkbmap -option caps:swapescape
