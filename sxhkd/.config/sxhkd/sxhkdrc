@@ -16,7 +16,7 @@ super + Escape
 # super + d are shortcuts for apps
 # file explorer
 super + s ; f
-  alacritty -e ranger
+  alacritty -e thunar
 
 # spotify
 super + s ; s

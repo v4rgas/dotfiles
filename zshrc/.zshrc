@@ -23,7 +23,7 @@ export GPG_TTY=$TTY
 export PATH="$PATH:$HOME/.local/bin"
 
 # Aliases
-alias f="thunar ."
+alias f="ranger"
 alias e="nvim ."
 
 #ESC <-> CAPSLOCK 
