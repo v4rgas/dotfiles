@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# create symbolic links for missing folders
-
 CONFIG_DIR="$HOME/.config"
 PROJECT_DIR="/home/juan/devel/dotfiles"
 
