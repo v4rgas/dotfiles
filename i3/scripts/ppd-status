@@ -8,4 +8,4 @@
 # script to show current power profile
 
 current_profile=$(/usr/bin/powerprofilesctl get)
-echo "$current_profile"
+echo "${current_profile:0:3}"
