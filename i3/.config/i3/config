@@ -184,7 +184,7 @@ bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
 # lock with a picture:
 #bindsym $mod+l exec --no-startup-id i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
-bindsym $mod+Mod1+l exec --no-startup-id ~/.config/i3/scripts/blur-lock
+bindsym $mod+o exec --no-startup-id ~/.config/i3/scripts/blur-lock
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -474,7 +474,7 @@ for_window [window_role="About"] floating enable
 for_window [class="urxvt"] border pixel 1
 
 # set size of floating window
-#for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of file choose dialog
+#for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of filMe choose dialog
 #for_window [class=".*"] resize set 640 480 #to change size of all floating windows 
 
 # set position of floating window

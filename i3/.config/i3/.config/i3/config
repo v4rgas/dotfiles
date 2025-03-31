@@ -192,6 +192,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
 
+bindsym $mod+Shift+z exec --no-startup-id ~/.config/i3/scripts/toggle-keyboard.sh
+
 # keybinding in fancy rofi (automated):
 bindsym F1 exec --no-startup-id ~/.config/i3/scripts/keyhint-2
 # alternative
