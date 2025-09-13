@@ -1,0 +1,5 @@
+- im using docker desktop
+- Always check if the project is using uv, poetry, npm, pnpm, yarn or any other tools. Always adapt to the current enviroment
+- If enviroment variables are required to run tests, export them using a .env file
+- If tests fail, always get to the root cause, updating the test itself should happen only if logic changed
+- When planning changes, always check how they would affect current tests
