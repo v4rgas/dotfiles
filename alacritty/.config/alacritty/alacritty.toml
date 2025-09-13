@@ -1,5 +1,5 @@
 [font]
-size = 10.0
+size = 7
 
 # Base16 Bright 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
@@ -59,3 +59,9 @@ color = "0xd0d0d0"
 [[colors.indexed_colors]]
 index = 21
 color = "0xf5f5f5"
+
+# Key bindings
+[keyboard]
+bindings = [
+  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance" }
+]
