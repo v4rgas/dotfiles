@@ -1,0 +1,261 @@
+#!/bin/bash
+
+# Simple Claude Account Switcher
+# Creates persistent aliases for seamless account switching
+
+set -e
+
+# Account configurations
+ACCOUNT1_DIR="$HOME/.claude-personal"
+ACCOUNT2_DIR="$HOME/.claude-work"
+
+# Colors
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+# Detect shell config file
+get_shell_config() {
+    if [[ -n "$ZSH_VERSION" ]]; then
+        echo "$HOME/.zshrc"
+    elif [[ -n "$BASH_VERSION" ]]; then
+        if [[ -f "$HOME/.bashrc" ]]; then
+            echo "$HOME/.bashrc"
+        else
+            echo "$HOME/.bash_profile"
+        fi
+    else
+        # Default to bashrc
+        echo "$HOME/.bashrc"
+    fi
+}
+
+print_usage() {
+    echo "Simple Claude Account Switcher"
+    echo "Usage: $0 [COMMAND]"
+    echo ""
+    echo "Commands:"
+    echo "  setup           Setup accounts and shell integration"
+    echo "  personal        Set personal as default (claude uses personal)"
+    echo "  work            Set work as default (claude uses work)"
+    echo "  status          Show current setup and default account"
+    echo "  help            Show this help"
+    echo ""
+    echo "After setup, use 'claude' command with your chosen default:"
+    echo "  claude          # Uses whichever account you set as default"
+    echo ""
+    echo "Examples:"
+    echo "  $0 setup        # Initial setup"
+    echo "  $0 personal     # Set personal as default"
+    echo "  $0 work         # Set work as default"
+}
+
+install_shell_integration() {
+    local shell_config
+    shell_config=$(get_shell_config)
+
+    echo -e "${BLUE}Installing shell integration to $shell_config...${NC}"
+
+    # Check if integration already exists
+    if grep -q "CLAUDE_CONFIG_DIR" "$shell_config" 2>/dev/null; then
+        echo -e "${YELLOW}Shell integration already exists in $shell_config${NC}"
+        return 0
+    fi
+
+    # Add shell integration
+    cat >> "$shell_config" << 'EOF'
+
+# Claude Account Switcher
+# Default account is read from ~/.claude-default
+if [[ -f "$HOME/.claude-default" ]]; then
+    export CLAUDE_CONFIG_DIR=$(cat "$HOME/.claude-default")
+fi
+EOF
+
+    echo -e "${GREEN}✓ Shell integration added to $shell_config${NC}"
+    echo -e "${YELLOW}Please restart your terminal or run: source $shell_config${NC}"
+    return 0
+}
+
+setup_accounts() {
+    echo -e "${BLUE}Setting up Claude account directories...${NC}"
+
+    # Create account directories
+    mkdir -p "$ACCOUNT1_DIR"
+    mkdir -p "$ACCOUNT2_DIR"
+
+    echo -e "${GREEN}✓ Created directories:${NC}"
+    echo "  Personal: $ACCOUNT1_DIR"
+    echo "  Work: $ACCOUNT2_DIR"
+    echo ""
+
+    # Install shell integration
+    install_shell_integration
+
+    echo ""
+    echo -e "${YELLOW}Next steps:${NC}"
+    echo "1. Restart your terminal (or run: source $(get_shell_config))"
+    echo "2. Choose default account: $0 personal  OR  $0 work"
+    echo "3. Run: claude"
+    echo "4. Authenticate with your chosen account"
+    echo "5. To switch: $0 work  (or $0 personal)"
+    echo ""
+    echo -e "${GREEN}After setup, 'claude' will use your chosen default account!${NC}"
+}
+
+set_default_account() {
+    local account="$1"
+    local account_dir=""
+
+    case "$account" in
+        "personal")
+            account_dir="$ACCOUNT1_DIR"
+            ;;
+        "work")
+            account_dir="$ACCOUNT2_DIR"
+            ;;
+        *)
+            echo -e "${RED}Error: Invalid account '$account'${NC}"
+            echo "Use 'personal' or 'work'"
+            exit 1
+            ;;
+    esac
+
+    if [[ ! -d "$account_dir" ]]; then
+        echo -e "${YELLOW}Account directory doesn't exist. Run '$0 setup' first.${NC}"
+        exit 1
+    fi
+
+    # Write default account to file
+    echo "$account_dir" > "$HOME/.claude-default"
+
+    echo -e "${GREEN}✓ Set $account as default account${NC}"
+    echo -e "${BLUE}Directory: $account_dir${NC}"
+    echo ""
+    echo -e "${YELLOW}All new terminal sessions will use this account when you run 'claude'${NC}"
+
+    # Show current status
+    show_current_default
+}
+
+get_account_info() {
+    local account_dir="$1"
+    local config_file="$account_dir/.claude.json"
+
+    if [[ -f "$config_file" ]]; then
+        local email
+        email=$(jq -r '.oauthAccount.emailAddress // "Unknown"' "$config_file" 2>/dev/null || echo "Unknown")
+        if [[ "$email" != "null" && "$email" != "Unknown" ]]; then
+            echo "$email"
+        else
+            echo "Not authenticated"
+        fi
+    else
+        echo "Not authenticated"
+    fi
+}
+
+show_current_default() {
+    if [[ -f "$HOME/.claude-default" ]]; then
+        local default_dir
+        default_dir=$(cat "$HOME/.claude-default")
+        local account_name="unknown"
+
+        if [[ "$default_dir" == "$ACCOUNT1_DIR" ]]; then
+            account_name="personal"
+        elif [[ "$default_dir" == "$ACCOUNT2_DIR" ]]; then
+            account_name="work"
+        fi
+
+        local account_info
+        account_info=$(get_account_info "$default_dir")
+
+        echo -e "${GREEN}Default account: $account_name ($account_info)${NC}"
+        echo -e "${BLUE}Directory: $default_dir${NC}"
+    else
+        echo -e "${YELLOW}No default account set${NC}"
+    fi
+}
+
+show_status() {
+    echo -e "${BLUE}Claude Account Setup Status:${NC}"
+    echo ""
+
+    # Check directories and authentication status
+    if [[ -d "$ACCOUNT1_DIR" ]]; then
+        local personal_info
+        personal_info=$(get_account_info "$ACCOUNT1_DIR")
+        echo -e "${GREEN}✓${NC} Personal account: $personal_info"
+        echo "  Directory: $ACCOUNT1_DIR"
+    else
+        echo -e "${RED}✗${NC} Personal account directory missing"
+    fi
+
+    echo ""
+
+    if [[ -d "$ACCOUNT2_DIR" ]]; then
+        local work_info
+        work_info=$(get_account_info "$ACCOUNT2_DIR")
+        echo -e "${GREEN}✓${NC} Work account: $work_info"
+        echo "  Directory: $ACCOUNT2_DIR"
+    else
+        echo -e "${RED}✗${NC} Work account directory missing"
+    fi
+
+    echo ""
+
+    # Check if shell integration is installed
+    local shell_config
+    shell_config=$(get_shell_config)
+
+    if grep -q "CLAUDE_CONFIG_DIR.*claude-default" "$shell_config" 2>/dev/null; then
+        echo -e "${GREEN}✓${NC} Shell integration installed in $shell_config"
+    else
+        echo -e "${YELLOW}✗${NC} Shell integration not installed. Run: $0 setup"
+    fi
+
+    echo ""
+
+    # Show current default
+    show_current_default
+
+    echo ""
+    echo -e "${BLUE}Usage:${NC}"
+    echo "  claude             # Uses default account"
+    echo "  $0 personal        # Set personal as default"
+    echo "  $0 work            # Set work as default"
+}
+
+main() {
+    # Check for jq dependency
+    if ! command -v jq >/dev/null 2>&1; then
+        echo -e "${RED}Error: jq is required but not installed.${NC}"
+        echo "Install with: sudo apt install jq (Linux) or brew install jq (macOS)"
+        exit 1
+    fi
+
+    case "${1:-help}" in
+        "setup")
+            setup_accounts
+            ;;
+        "status")
+            show_status
+            ;;
+        "install-aliases")
+            install_aliases
+            ;;
+        "help"|"-h"|"--help")
+            print_usage
+            ;;
+        *)
+            echo "Unknown command: ${1:-help}"
+            echo ""
+            print_usage
+            exit 1
+            ;;
+    esac
+}
+
+main "$@"

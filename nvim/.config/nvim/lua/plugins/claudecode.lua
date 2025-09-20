@@ -33,7 +33,7 @@ return {
     -- Terminal Configuration
     terminal = {
       split_side = "right", -- "left" or "right"
-      split_width_percentage = 0.20,
+      split_width_percentage = 0.30,
       provider = "snacks", -- "auto", "snacks", "native", "external", or custom provider table
       auto_close = true,
       snacks_win_opts = {}, -- Opts to pass to `Snacks.terminal.open()` - see Floating Window section below
@@ -52,7 +52,9 @@ return {
     diff_opts = {
       auto_close_on_accept = true,
       vertical_split = true,
-      open_in_current_tab = false, -- Open in new tab when you have 3+ buffers
+      open_in_new_tab = true, -- Open diff in a separate tab
+      open_in_current_tab = false,
+      hide_terminal_in_new_tab = true, -- In the new tab, do not show Claude terminal
       keep_terminal_focus = false, -- If true, moves focus back to terminal after diff opens
     },
   },
