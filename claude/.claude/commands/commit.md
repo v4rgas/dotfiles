@@ -22,8 +22,11 @@ Steps to follow:
 3. **Execute commit**:
    - Stage all relevant files with `git add`
    - Create commit with generated message
-   - **NEVER** add co-authoring or "Generated with Claude Code" messages
 
-If arguments are provided ($ARGUMENTS), use that as the commit message instead of generating one.
+If arguments are provided ($ARGUMENTS), use that as a guide or basis for the commit message.
 
 Focus on being concise, clear, and following the existing commit style in the repository.
+
+Important considerations:
+
+- If commit fails due to pre-commit hooks, commit will NOT be created. So we need to add changed files and commit again.
