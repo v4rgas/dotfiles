@@ -290,9 +290,9 @@ bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow)
 bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
 
 ## Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+Print exec --no-startup-id sh -c 'f=$(mktemp --suffix=.png) && maim "$f" && xclip -selection clipboard -t image/png -i "$f" && rm -f "$f"'
+bindsym Ctrl+$mod+Print exec --no-startup-id sh -c 'f=$(mktemp --suffix=.png) && maim --window "$(xdotool getactivewindow)" "$f" && xclip -selection clipboard -t image/png -i "$f" && rm -f "$f"'
+bindsym Ctrl+Shift+Print exec --no-startup-id sh -c 'f=$(mktemp --suffix=.png) && maim --select "$f" && xclip -selection clipboard -t image/png -i "$f" && rm -f "$f"'
 
 
 # Power Profiles menu switcher (rofi)
@@ -397,7 +397,6 @@ exec --no-startup-id dex --autostart --environment i3
 # start a script to setup displays
 # uncomment the next line, use arandr to setup displays and save the file as monitor:
 exec --no-startup-id ~/.screenlayout/monitor.sh
-exec --no-startup-id ~/.script/utils.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
