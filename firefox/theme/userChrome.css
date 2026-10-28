@@ -1,0 +1,32 @@
+/* Rosé Pine Moon: native Firefox layout, themed surfaces and selection. */
+:root {
+  --lwt-accent-color: #232136 !important;
+  --lwt-text-color: #e0def4 !important;
+  --toolbar-bgcolor: #2a273f !important;
+  --toolbar-color: #e0def4 !important;
+  --toolbar-field-background-color: #232136 !important;
+  --toolbar-field-color: #e0def4 !important;
+  --toolbar-field-focus-background-color: #393552 !important;
+  --toolbar-field-focus-color: #e0def4 !important;
+  --toolbar-field-focus-border-color: #c4a7e7 !important;
+  --toolbarbutton-icon-fill: #e0def4 !important;
+  --toolbarbutton-hover-background: #393552 !important;
+  --toolbarbutton-active-background: #44415a !important;
+  --lwt-tab-text: #e0def4 !important;
+  --lwt-tab-line-color: #c4a7e7 !important;
+  --tab-selected-bgcolor: #44415a !important;
+  --tab-selected-textcolor: #e0def4 !important;
+  --tab-border-radius: 6px !important;
+  --arrowpanel-background: #2a273f !important;
+  --arrowpanel-color: #e0def4 !important;
+  --arrowpanel-border-color: #44415a !important;
+  --arrowpanel-dimmed: #393552 !important;
+  --sidebar-background-color: #232136 !important;
+  --sidebar-text-color: #e0def4 !important;
+  --urlbarView-highlight-background: #44415a !important;
+  --urlbarView-highlight-color: #e0def4 !important;
+  --link-color: #9ccfd8 !important;
+}
+#navigator-toolbox { background: #232136 !important; color: #e0def4 !important; }
+.tab-background[selected] { box-shadow: inset 0 -2px #c4a7e7 !important; }
+#sidebar-box, #sidebar { background-color: #232136 !important; color: #e0def4 !important; }

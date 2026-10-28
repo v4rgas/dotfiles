@@ -48,13 +48,13 @@ workspace_layout default
 ##############################
 
 #border indicator on windows:
-new_window pixel 1
+default_border pixel 2
 
 # thin borders
 # hide_edge_borders both
 
 # Set inner/outer gaps
-gaps inner 0
+gaps inner 4
 gaps outer 0
 
 # show window title bars (not officially supported with i3gaps)
@@ -174,6 +174,9 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws10
 # start a terminal
 bindsym $mod+Return exec --no-startup-id ghostty
 
+# start sttop in a terminal
+bindsym $mod+m exec --no-startup-id ghostty -e /home/juan/.local/bin/sttop
+
 # kill focused window
 bindsym $mod+q kill
 
@@ -185,6 +188,9 @@ bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
 #bindsym $mod+l exec --no-startup-id i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
 # lock by blurring the screen:
 bindsym $mod+o exec --no-startup-id ~/.config/i3/scripts/blur-lock
+
+# Turn off monitors (wake with keyboard or mouse)
+bindsym $mod+Shift+o exec --no-startup-id /usr/bin/sleep 1 && /usr/bin/xset dpms force off
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -362,7 +368,7 @@ set $ws10 "10"
 # For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
 # install picom package (yay -S picom)
 # start using default config 
-#exec_always --no-startup-id picom -b
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 #
 # for custom config:
 #exec_always --no-startup-id picom --config  ~/.config/picom.conf
@@ -401,7 +407,7 @@ exec --no-startup-id ~/.script/utils.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
-exec --no-startup-id sleep 1 && feh --bg-fill --randomize /home/juan/Pictures/backgrounds/
+exec --no-startup-id feh --no-fehbg --bg-fill ~/.local/share/wallpapers/bipboplabs.png
 
 # set powersavings for display:
 exec --no-startup-id xset s 480 dpms 600 600 600
@@ -425,6 +431,10 @@ exec --no-startup-id xset s 480 dpms 600 600 600
 # may need to run dbus-launch explicitly: 
 #exec --no-startup-id dbus-launch /usr/bin/dunst
 exec --no-startup-id /usr/bin/dunst
+
+# Bridge StatusNotifier tray icons (librepods, etc.) to i3bar's XEmbed tray
+exec --no-startup-id snixembed
+
 # alternative if you installed aside with XFCE4:
 # exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
@@ -472,8 +482,8 @@ for_window [class="Pamac-manager"] floating enable
 for_window [window_role="About"] floating enable
 
 # set border of floating window
-for_window [class="urxvt"] border pixel 1
-for_window [class="com.mitchellh.ghostty"] border pixel 1
+for_window [class="urxvt"] border pixel 2
+for_window [class="com.mitchellh.ghostty"] border pixel 2
 
 # set size of floating window
 #for_window [window_role="(?i)GtkFileChooserDialog"] resize set 640 480 #to set size of filMe choose dialog
@@ -504,7 +514,7 @@ set $base01 #303030
 set $base02 #505050
 set $base03 #b0b0b0
 set $base04 #d0d0d0
-set $base05 #e0e0e0
+set $base05 #ea9a97
 set $base06 #f5f5f5
 set $base07 #ffffff
 set $base08 #fb0120
@@ -519,12 +529,12 @@ set $base0F #be643c
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base05 $base0D $base00 $base0D $base0C
-client.focused_inactive $base01 $base01 $base05 $base03 $base01
-client.unfocused        $base01 $base00 $base05 $base01 $base01
-client.urgent           $base08 $base08 $base00 $base08 $base08
-client.placeholder      $base00 $base00 $base05 $base00 $base00
-client.background       $base07
+client.focused          #eb6f92 #232136 #e0def4 #eb6f92 #eb6f92
+client.focused_inactive #44415a #232136 #908caa #44415a #44415a
+client.unfocused        #393552 #232136 #908caa #393552 #393552
+client.urgent           #eb6f92 #232136 #eb6f92 #eb6f92 #eb6f92
+client.placeholder      #232136 #232136 #e0def4 #393552 #393552
+client.background       #232136
 
 ############################################
 # bar settings (input comes from i3blocks) #
@@ -533,33 +543,24 @@ client.background       $base07
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-		font pango: Noto Sans Regular 12
-		status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	    	position bottom
-#	    	i3bar_command i3bar --transparency
-# it could be that you have no primary display set: set one (xrandr --output <output> --primary)
-# reference: https://i3wm.org/docs/userguide.html#_tray_output
-		    #tray_output primary
-		    tray_padding 0
-
-# When strip_workspace_numbers is set to yes,
-# any workspace that has a name of the form
-# “[n][:][NAME]” will display only the name.
-strip_workspace_numbers yes
-##strip_workspace_name no
-
-	colors {
-	    background $base00
-	    separator  $base01
-	    statusline $base04
-
-	    # State             Border  BG      Text
-	    focused_workspace   $base0D $base0D $base00
-	    active_workspace    $base03 $base03 $base00
-	    inactive_workspace  $base01 $base01 $base05
-	    urgent_workspace    $base08 $base08 $base00
-	    binding_mode        $base0A $base0A $base00
-	}	
+    i3bar_command i3bar --transparency
+    font pango: JetBrains Mono 9
+    status_command exec i3blocks -c ~/.config/i3/i3blocks.conf
+    position top
+    padding 0 14 0 0
+    tray_padding 3
+    separator_symbol "|"
+    strip_workspace_numbers yes
+    colors {
+        background #232136fa
+        statusline #e0def4
+        separator #44415a
+        focused_workspace #eb6f92 #2d2a45fa #ebbcba
+        active_workspace #232136fa #232136fa #908caa
+        inactive_workspace #232136fa #232136fa #908caa
+        urgent_workspace #eb6f92 #232136fa #eb6f92
+        binding_mode #232136fa #232136fa #f6c177
+    }
 }
 
 # you can add different bars for multidisplay setups on each display:

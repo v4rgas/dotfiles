@@ -1,0 +1,32 @@
+# Rosé Pine Moon palette adapted to Zathura's documented color settings.
+# https://rosepinetheme.com/palette/ingredients/
+set selection-clipboard clipboard
+set font "JetBrains Mono 10"
+set default-bg "#232136"
+set default-fg "#e0def4"
+set statusbar-bg "#2a273f"
+set statusbar-fg "#e0def4"
+set inputbar-bg "#2a273f"
+set inputbar-fg "#e0def4"
+set completion-bg "#232136"
+set completion-fg "#e0def4"
+set completion-group-bg "#2a273f"
+set completion-group-fg "#c4a7e7"
+set completion-highlight-bg "#44415a"
+set completion-highlight-fg "#e0def4"
+set notification-bg "#2a273f"
+set notification-fg "#e0def4"
+set notification-error-bg "#2a273f"
+set notification-error-fg "#eb6f92"
+set notification-warning-bg "#2a273f"
+set notification-warning-fg "#f6c177"
+set highlight-color "#c4a7e7"
+set highlight-active-color "#ea9a97"
+set highlight-fg "#232136"
+
+# Dark reading mode; Ctrl+R toggles original document colors.
+set recolor true
+set recolor-darkcolor "#e0def4"
+set recolor-lightcolor "#232136"
+set recolor-keephue true
+set recolor-reverse-video true
