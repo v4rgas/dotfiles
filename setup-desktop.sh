@@ -11,9 +11,11 @@ command -v yay >/dev/null || { echo 'Install yay first; Rosé Pine GTK is an AUR
 
 # Pacman manages the large theme/icon assets; they do not live in this repo.
 # Keep AUR build-file review and sudo prompts enabled.
-yay -S --needed rose-pine-gtk-theme-full breeze-icons gtk-engine-murrine ttf-jetbrains-mono picom dunst feh imagemagick python
+yay -S --needed rose-pine-gtk-theme-full breeze-icons gtk-engine-murrine ttf-jetbrains-mono picom dunst feh imagemagick python curl xorg-xrdb xorg-xsetroot
 [[ -f /usr/share/themes/rose-pine-moon-gtk/gtk-3.0/gtk.css ]] || { echo 'rose-pine-moon-gtk was not installed.' >&2; exit 1; }
 [[ -f /usr/share/icons/rose-pine-moon-icons/index.theme ]] || { echo 'rose-pine-moon-icons was not installed.' >&2; exit 1; }
+
+"$repo_dir/setup-cursor.sh"
 
 # Back up conflicts, then link individual files. Safe to run again after a pull.
 backup_dir="${XDG_STATE_HOME:-$HOME/.local/state}/desktop-setup/$(date +%Y%m%d-%H%M%S)-$$"
@@ -21,7 +23,7 @@ for package in desktop rofi i3 ghostty zathura; do
     while IFS= read -r -d '' source_file; do
         relative=${source_file#"$repo_dir/$package/"}
         case "$relative" in
-            .config/*|.gtkrc-2.0) ;;
+            .config/*|.gtkrc-2.0|.Xresources|.icons/default/index.theme) ;;
             *) continue ;;
         esac
         # Do not deploy historical backups from the i3 package.
@@ -58,6 +60,12 @@ if command -v gsettings >/dev/null && [[ -n ${DBUS_SESSION_BUS_ADDRESS:-} ]]; th
     gsettings set org.gnome.desktop.interface gtk-theme rose-pine-moon-gtk
     gsettings set org.gnome.desktop.interface icon-theme rose-pine-moon-icons
     gsettings set org.gnome.desktop.interface color-scheme default
+    gsettings set org.gnome.desktop.interface cursor-theme BreezeX-RosePine-Linux
+    gsettings set org.gnome.desktop.interface cursor-size 24
+fi
+if [[ -n ${DISPLAY:-} ]]; then
+    xrdb -merge "$HOME/.Xresources"
+    xsetroot -cursor_name left_ptr
 fi
 if command -v i3-msg >/dev/null && [[ -n ${DISPLAY:-} ]]; then
     i3 -C -c "$HOME/.config/i3/config"
