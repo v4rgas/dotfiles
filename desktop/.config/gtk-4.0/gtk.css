@@ -1,2 +1,10 @@
 /* Rosé Pine Moon, installed by rose-pine-gtk-theme-full. */
 @import url("/usr/share/themes/rose-pine-moon-gtk/gtk-4.0/gtk.css");
+
+/* Compact corner scale: controls 4px, popovers 8px; windows via Picom 6px.
+   Preserve circular buttons and the geometry of linked button groups. */
+button:not(.circular):not(.pill), entry { border-radius: 4px; }
+.linked > button:not(:first-child):not(:last-child) { border-radius: 0; }
+.linked > button:first-child:not(:last-child) { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.linked > button:last-child:not(:first-child) { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+popover > contents { border-radius: 8px; }

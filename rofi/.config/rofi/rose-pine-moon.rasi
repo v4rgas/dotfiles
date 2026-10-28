@@ -27,6 +27,7 @@
 }
 
 window {
+    border-radius: 8px;
     background-color: @background;
     border:           1;
     padding:          5;

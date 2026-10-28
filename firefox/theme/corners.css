@@ -1,0 +1,7 @@
+/* Geometry only: colors remain controlled by the Firefox theme add-on. */
+:root {
+  --tab-border-radius: 4px !important;
+  --arrowpanel-border-radius: 8px !important;
+  --toolbarbutton-border-radius: 4px !important;
+}
+#urlbar-background, #searchbar { border-radius: 4px !important; }

@@ -70,6 +70,11 @@ floating_modifier $mod
 bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
+# Mouse thumb buttons: cycle existing workspaces on the current monitor.
+# Replaces application Back/Forward while the pointer is over a window.
+bindsym --whole-window --border button8 workspace prev_on_output
+bindsym --whole-window --border button9 workspace next_on_output
+
 # switch to workspace
 bindcode $mod+10    workspace  $ws1
 bindcode $mod+11    workspace  $ws2
