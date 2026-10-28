@@ -1,0 +1,61 @@
+Rosé Pine Moon desktop (Arch / EndeavourOS)
+
+After cloning or pulling this repository, run as your normal user:
+  ./setup-desktop.sh
+
+Requires an existing i3 desktop, yay, and internet access. The script installs
+rose-pine-gtk-theme-full (GTK themes and matching icons) and JetBrains Mono.
+Sudo and AUR review prompts remain interactive. Theme assets stay out of Git.
+
+Links desktop, rofi, i3, ghostty, and zathura configs from this checkout. Existing files
+are backed up under ~/.local/state/desktop-setup/. Review machine-specific
+monitor, application and home-directory bindings in the full i3 config before
+using it on another computer. Restart open GTK applications after setup.
+
+GTK: rose-pine-moon-gtk. Icons: rose-pine-moon-icons. GTK4 imports the packaged
+Moon CSS. GTK's prefer-dark flag is off as required by the upstream theme;
+Moon itself is still a dark palette. Ghostty uses built-in Rose Pine Moon.
+Rofi retains the small text-only layout. Bar stays at the top, with system
+stats and 14px right padding. Reload Ghostty using Ctrl+Shift+comma.
+
+Sources:
+https://github.com/rose-pine/gtk
+https://github.com/rose-pine/rofi
+https://github.com/rose-pine/i3
+https://github.com/rose-pine/ghostty
+https://aur.archlinux.org/packages/rose-pine-gtk-theme-full
+
+Reviewed 2026-10-27: AUR 2.2.0-3 downloads versioned upstream releases with
+SHA-256 verification and packages GTK3, GTK4 and icons. No upstream installer
+script is executed. Review future AUR recipe changes through yay.
+
+Zathura uses a local Moon palette adaptation; no official Zathura port was
+found. Recolored reading mode is enabled; Ctrl+R toggles original colors.
+
+Picom adds 6px rounded corners to regular windows; i3 uses 4px gaps.
+The bar and full-screen windows stay square; Rofi draws its own 6px corners. Picom starts with i3.
+
+Window borders are 2px, with Rosé Pine love (#eb6f92) marking focus, matching Firefox and the selected workspace.
+
+Firefox: use the Rosé Pine Dark Theme add-on (main palette). Installation URL
+and migration instructions are in firefox/README.txt. The previous custom CSS
+is disabled by firefox/install.py; restart Firefox after migration.
+
+Ghostty and i3bar backgrounds use 98% opacity (2% transparency). Picom must run.
+Workspace highlights have square corners because i3bar cannot round them.
+Notifications use compact padding, 6px corners, and stay on monitor 0.
+
+The setup renders wallpapers/bipboplabs.svg to ~/.local/share/wallpapers/bipboplabs.png
+and i3 restores it on login. The Python generator uses explicit dot-matrix glyphs,
+with no AI assets or font dependencies. Source and SVG are stored in Git.
+
+To include Firefox preferences during desktop setup, first launch Firefox once:
+  FIREFOX_PROFILE=dev-edition-default ./setup-desktop.sh
+Use default-release for regular Firefox, or the name listed in about:profiles.
+Then install the linked Rosé Pine Dark Theme add-on and restart Firefox.
+Firefox's own add-on confirmation is required; browser profile data stays local.
+
+Existing app dependencies: i3/i3blocks, Ghostty, Rofi, PCManFM, Zathura and a PDF
+backend. The inherited cursor setting uses Qogir-dark; install that cursor theme
+if desired. Some inherited keybindings require local scripts (sttop) and apps;
+review them for the target machine. snixembed is optional for tray bridging.

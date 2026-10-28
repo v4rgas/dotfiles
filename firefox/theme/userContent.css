@@ -1,0 +1,13 @@
+/* Only Firefox's home/new-tab pages; websites retain their own styling. */
+@-moz-document url("about:home"), url("about:newtab"), url("about:blank") {
+  :root {
+    color-scheme: dark;
+    --newtab-background-color: #232136 !important;
+    --newtab-text-primary-color: #e0def4 !important;
+    --newtab-text-secondary-color: #908caa !important;
+    --newtab-element-hover-color: #44415a !important;
+    --newtab-background-color-secondary: #2a273f !important;
+    --newtab-primary-action-background: #c4a7e7 !important;
+  }
+  body { background-color: #232136 !important; color: #e0def4 !important; }
+}

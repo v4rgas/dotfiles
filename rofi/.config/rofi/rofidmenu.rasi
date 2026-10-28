@@ -1,0 +1,62 @@
+/* Plain text launcher; palette shared with the other desktop menus. */
+configuration {
+    font: "JetBrains Mono 10";
+    show-icons: false;
+    display-drun: ">";
+    display-window: ">";
+    drun-display-format: "{name}";
+    disable-history: false;
+    sidebar-mode: false;
+}
+
+@import "~/.config/rofi/config.rasi"
+
+window {
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    width: 480px;
+    background-color: @background;
+    border: 1px;
+    border-color: @border-color;
+    border-radius: 6px;
+    padding: 12px;
+}
+mainbox {
+    children: [ inputbar, message, listview ];
+    spacing: 8px;
+    padding: 0;
+    border: 0;
+}
+inputbar {
+    children: [ prompt, entry ];
+    background-color: transparent;
+    border: 0;
+    padding: 6px 8px;
+    spacing: 10px;
+}
+prompt { text-color: @foreground; }
+entry { text-color: @foreground; }
+listview {
+    columns: 1;
+    lines: 6;
+    fixed-height: false;
+    dynamic: true;
+    scrollbar: false;
+    border: 0;
+    padding: 0;
+    spacing: 0;
+}
+element {
+    children: [ element-text ];
+    padding: 7px 8px;
+    border: 0;
+    border-radius: 0;
+}
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+message { border: 0; padding: 6px 8px; }
+textbox { text-color: @foreground; }
