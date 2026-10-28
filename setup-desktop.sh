@@ -49,6 +49,8 @@ if [[ -n ${DISPLAY:-} ]]; then
     feh --no-fehbg --bg-fill "$HOME/.local/share/wallpapers/bipboplabs.png"
 fi
 
+python3 "$repo_dir/vesktop/install.py"
+
 # Firefox profiles must exist first; opt in to one by name, not machine-specific path.
 if [[ -n ${FIREFOX_PROFILE:-} ]]; then
     python3 "$repo_dir/firefox/install.py" --profile "$FIREFOX_PROFILE"

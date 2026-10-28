@@ -1,0 +1,224 @@
+/* Local desktop polish over the pinned Rosé Pine Moon theme.
+ * Panels/menus: 8px; controls: 4px. Avatars and status circles keep their shape.
+ * Token reference: https://docs.betterdiscord.app/discord/variables
+ */
+:root {
+    --desktop-panel-radius: 8px;
+    --desktop-control-radius: 4px;
+    --desktop-gap: 8px;
+    --gap: var(--desktop-gap);
+}
+
+/* Use the shared radii for upstream's token-based components. */
+:root,
+.theme-dark,
+.theme-darker,
+.theme-midnight {
+    --radius-xs: 2px;
+    --radius-sm: var(--desktop-control-radius);
+    --radius-md: var(--desktop-panel-radius);
+    --radius-lg: var(--desktop-panel-radius);
+    --radius-xl: var(--desktop-panel-radius);
+    --radius-xxl: var(--desktop-panel-radius);
+}
+
+/* Upstream also hard-codes larger corners on these surfaces. */
+:root :is(
+    .header_f37cb1, .container_f37cb1,
+    .sidebarList__5e434, .sidebarList_c48ade,
+    .subtitleContainer_f75fb0, .title_f75fb0,
+    .theme-dark.images-dark.container__9293f.themed__9293f,
+    .chatContent_f75fb0, .container_c8ffbb,
+    .panels__5e434, .panels_c48ade, .activityPanel__5e434,
+    .channelTextArea_f75fb0,
+    .content_f75fb0.container__0b563,
+    .list_f369db, .mainCard_f369db, .container_d9be46.collapsed_d9be46,
+    .header__0b563.container__9293f,
+    .scroller__7d20c, .inner_a45028,
+    .message__89466, .voiceFiltersPopout_e2f668,
+    .root__49fc1, .menu_c1e9c4, .container__55c99,
+    .outer_c0bea0, .contentWrapper__08434
+) {
+    border-radius: var(--desktop-panel-radius) !important;
+}
+
+:root :is(
+    .searchBar__97492, .searchBar__5ec2f,
+    .searchBarComponent__35e86,
+    .button__201d5, .input__0f084,
+    .interactive_bf202d, .interactive__972a0,
+    .link__2ea32, .member__5d473 .childContainer__91a9d
+) {
+    border-radius: var(--desktop-control-radius) !important;
+}
+
+/* The input's inner fill follows its 8px parent rather than a large capsule. */
+.channelTextArea_f75fb0 .scrollableContainer__74017 {
+    border-radius: inherit !important;
+}
+
+/* Mention/reply highlights follow the same corners as other interactive rows.
+ * Shape the accent separately, without clipping message menus or reactions.
+ */
+.message__5126c {
+    border-radius: var(--desktop-control-radius) !important;
+}
+.message__5126c:is(.mentioned__5126c, .replying__5126c, .ephemeral__5126c)::before {
+    border-radius: var(--desktop-control-radius) 0 0 var(--desktop-control-radius) !important;
+}
+
+/* One geometry for DM, server and Friends pages. The upstream server-list
+ * margin used to make a second, differently colored gutter inside its panel.
+ */
+.page__5e434 {
+    padding-inline-start: var(--desktop-gap);
+    border-inline-start: none !important;
+}
+.container__2637a {
+    margin-right: 0 !important;
+}
+.chat_f75fb0 {
+    padding-bottom: var(--desktop-gap) !important;
+    padding-right: var(--desktop-gap) !important;
+}
+
+/* Base is the canvas/gutters; surface is every persistent content panel.
+ * Overlay is reserved for raised menus, cards and editable fields.
+ */
+:root :is(
+    .base__5e434, .content__5e434, .sidebar__5e434, .page__5e434,
+    .bar_c38106, .wrapper_ef3116.guilds__5e434,
+    .sidebarResizeHandle__5e434, .chat_f75fb0, .content_f75fb0,
+    .tabBody__133bf, .container__133bf
+) {
+    background: var(--base) !important;
+}
+:root :is(
+    .sidebarList__5e434, .privateChannels__35e86, .scroller__99e7c,
+    .container__2637a, .scroller__629e4,
+    .header_f37cb1, .subtitleContainer_f75fb0, .title_f75fb0,
+    .container__9293f.themed__9293f,
+    .chatContent_f75fb0, .container_c8ffbb, .membersWrap_c8ffbb,
+    .members_c8ffbb, .panels__5e434,
+    .peopleColumn__133bf, .nowPlayingColumn__133bf,
+    .sidebarRegion__23e6b, .sidebarRegionScroller__23e6b,
+    .contentRegion__23e6b, .contentRegionScroller__23e6b
+) {
+    background: var(--surface) !important;
+}
+:root :is(
+    .channelTextArea_f75fb0, .searchBar__97492, .searchBarComponent__35e86,
+    .menu_c1e9c4, .root__49fc1, .container__55c99,
+    .vc-addon-card, .accountProfileCard__1fed1
+) {
+    background: var(--overlay) !important;
+}
+:root :is(
+    .chatContent_f75fb0, .panels__5e434, .channelTextArea_f75fb0,
+    .subtitleContainer_f75fb0, .container_c8ffbb,
+    .menu_c1e9c4, .root__49fc1, .vc-addon-card
+) {
+    border-color: var(--highlightMed) !important;
+}
+
+/* Match ordinary profile surfaces, retaining people's banners and custom
+ * profile gradients. Upstream paints every profile with a cyan outer fill.
+ */
+.outer_c0bea0:not(.custom-user-profile-theme),
+.outer_c0bea0:not(.custom-user-profile-theme) .inner_c0bea0 {
+    background: var(--surface) !important;
+    border-color: var(--highlightMed) !important;
+}
+.outer_c0bea0.custom-user-profile-theme {
+    background: linear-gradient(var(--profile-gradient-primary-color) var(--custom-user-profile-banner-height), var(--profile-gradient-secondary-color) calc(100% - var(--custom-user-profile-footer-height))) !important;
+}
+.outer_c0bea0.custom-user-profile-theme .inner_c0bea0 {
+    background: linear-gradient(var(--profile-gradient-start), var(--profile-gradient-start) var(--custom-user-profile-banner-height), var(--profile-gradient-end)) !important;
+}
+.outer_c0bea0.custom-user-profile-theme.user-profile-modal-v2 {
+    background: linear-gradient(var(--profile-gradient-modal-background-color), var(--profile-gradient-modal-background-color)) !important;
+}
+.outer_c0bea0.custom-user-profile-theme.user-profile-modal-v2 .inner_c0bea0 {
+    background: linear-gradient(color-mix(in oklab, var(--profile-gradient-overlay-color) 80%, var(--profile-gradient-modal-background-color)), color-mix(in oklab, var(--profile-gradient-overlay-color) 20%, var(--profile-gradient-modal-background-color)) 300px) !important;
+}
+
+/* Preserve Discord's unread/hover/selected heights. Only refine width/color.
+ * Current Discord markup uses overlay__58105, no longer a pill_* wrapper.
+ */
+.guilds__5e434 .item__58105 {
+    width: 3px !important;
+    border-radius: 2px !important;
+    margin-left: 0 !important;
+    background-color: var(--subtle) !important;
+}
+.guilds__5e434 .listItem__650eb:has([aria-selected="true"]) .item__58105 {
+    background-color: var(--love) !important;
+}
+
+/* Discord normally extends the server rail 16px behind the floating user
+ * panel and fades that overlap. End both lists 8px above the panel, so the
+ * unread pill and list content do not show through the panel's corners.
+ * Use Discord's measured panel height, including expanded voice controls.
+ */
+.wrapper_ef3116.guilds__5e434,
+.sidebarList__5e434 {
+    margin-bottom: calc(var(--custom-app-panels-height, 0px) + var(--space-xs) + 8px) !important;
+}
+.wrapper_ef3116.guilds__5e434 {
+    mask: none !important;
+    -webkit-mask: none !important;
+}
+.sidebar__5e434::after {
+    display: none;
+}
+
+/* Keep the rail free of a second outline and remove upstream branding. */
+.guilds__5e434 .itemsContainer_ef3116 {
+    border: none !important;
+    box-shadow: none !important;
+}
+.bar_c38106::before {
+    content: none !important;
+}
+
+:root,
+.theme-dark:not(.custom-user-profile-theme),
+.theme-darker:not(.custom-user-profile-theme),
+.theme-midnight:not(.custom-user-profile-theme) {
+    --background-base-lowest: var(--base) !important;
+    --background-base-lower: var(--base) !important;
+    --background-base-low: var(--surface) !important;
+    --background-surface-high: var(--surface) !important;
+    --background-surface-higher: var(--overlay) !important;
+    --background-surface-highest: var(--overlay) !important;
+    --background-primary: var(--surface) !important;
+    --background-secondary: var(--surface) !important;
+    --background-secondary-alt: var(--overlay) !important;
+    --background-tertiary: var(--base) !important;
+    --background-floating: var(--overlay) !important;
+    --bg-base-primary: var(--base) !important;
+    --bg-base-secondary: var(--surface) !important;
+    --bg-base-tertiary: var(--overlay) !important;
+    --bg-surface-overlay: var(--overlay) !important;
+    --chat-background-default: var(--surface) !important;
+    --card-background-default: var(--overlay) !important;
+    --input-background: var(--overlay) !important;
+    --input-background-default: var(--overlay) !important;
+    --input-border-default: var(--highlightMed) !important;
+    --channeltextarea-background: var(--overlay) !important;
+    --control-secondary-background-default: var(--overlay) !important;
+    --control-secondary-background-hover: var(--highlightMed) !important;
+    --control-secondary-text-default: var(--text) !important;
+    --background-modifier-selected: var(--highlightMed) !important;
+    --background-modifier-hover: var(--overlay) !important;
+    --background-mod-subtle: var(--surface) !important;
+    --background-mod-normal: var(--overlay) !important;
+    --background-mod-strong: var(--highlightMed) !important;
+    --border-subtle: var(--highlightMed) !important;
+    --border-muted: var(--highlightMed) !important;
+    --text-default: var(--text) !important;
+    --text-muted: var(--subtle) !important;
+    --text-subtle: var(--subtle) !important;
+    --interactive-icon-default: var(--subtle) !important;
+    --interactive-icon-active: var(--text) !important;
+}

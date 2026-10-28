@@ -85,3 +85,8 @@ under ~/.local/share/icons. Assets stay out of Git; no sudo is required for the
 cursor install. GTK2/3/4, Xsettings, Xresources and the Xcursor fallback agree on
 BreezeX-RosePine-Linux, size 24. Older apps may require restarting or a new login.
 Source: https://github.com/rose-pine/cursors
+
+Vesktop: setup-desktop.sh installs the pinned Rosé Pine Moon CSS through
+vesktop/install.py. Enable Custom CSS in Vencord once; updates then reload live.
+The installer preserves unrelated QuickCSS and leaves plugin/account settings
+local. See vesktop/README.txt for source and standalone setup instructions.
