@@ -56,8 +56,7 @@ Then install the linked Rosé Pine Dark Theme add-on and restart Firefox.
 Firefox's own add-on confirmation is required; browser profile data stays local.
 
 Existing app dependencies: i3/i3blocks, Ghostty, Rofi, PCManFM, Zathura and a PDF
-backend. The inherited cursor setting uses Qogir-dark; install that cursor theme
-if desired. Some inherited keybindings require local scripts (sttop) and apps;
+backend. The cursor theme is BreezeX-RosePine-Linux at 24px. Some inherited keybindings require local scripts (sttop) and apps;
 review them for the target machine. snixembed is optional for tray bridging.
 
 Corner scale (Apple-inspired, not exact macOS metrics):
@@ -79,3 +78,15 @@ Picom 13 holds hidden normal windows for 16ms, then removes them in one step.
 This mitigates wallpaper flashing during fast workspace switches without a
 gradual fade. Confirmed on this setup with mouse and keyboard navigation.
 Reference: https://github.com/yshui/picom/issues/16
+
+Rosé Pine cursors: setup-desktop.sh runs setup-cursor.sh, which downloads the
+pinned official v1.1.0 Linux archive and verifies its SHA-256 before installing
+under ~/.local/share/icons. Assets stay out of Git; no sudo is required for the
+cursor install. GTK2/3/4, Xsettings, Xresources and the Xcursor fallback agree on
+BreezeX-RosePine-Linux, size 24. Older apps may require restarting or a new login.
+Source: https://github.com/rose-pine/cursors
+
+Vesktop: setup-desktop.sh installs the pinned Rosé Pine Moon CSS through
+vesktop/install.py. Enable Custom CSS in Vencord once; updates then reload live.
+The installer preserves unrelated QuickCSS and leaves plugin/account settings
+local. See vesktop/README.txt for source and standalone setup instructions.
