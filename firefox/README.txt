@@ -22,3 +22,6 @@ Restart Firefox after running it. Websites with a dark mode can honor this
 preference; it does not recolor sites that only support a light appearance.
 
 Vendored upstream CSS has trailing whitespace normalized.
+
+The installer enables a geometry-only desktop-corners.css: 4px tabs/fields
+and 8px panels. Colors still come from the installed theme add-on.

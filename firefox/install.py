@@ -5,6 +5,7 @@ import configparser
 import datetime
 from pathlib import Path
 import shutil
+import re
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--profile', default='dev-edition-default', help='Profile name in profiles.ini (default: dev-edition-default)')
@@ -44,13 +45,22 @@ for name in ('userChrome.css', 'userContent.css'):
         updated = current.replace(directive + '\n', '').replace(directive, '')
         if updated != current:
             save(target, updated)
+# Keep geometry separate from the add-on's palette.
+save(chrome / 'desktop-corners.css', (source / 'corners.css').read_text())
+target = chrome / 'userChrome.css'
+current = target.read_text() if target.exists() else ''
+directive = '@import url("desktop-corners.css");'
+if directive not in current:
+    save(target, directive + '\n' + current)
+
 # Prefer dark content and internal pages independently of the GTK setting.
 prefs = profile / 'user.js'
 current = prefs.read_text() if prefs.exists() else ''
-import re
 for key, value in (('layout.css.prefers-color-scheme.content-override', 0),
-                   ('ui.systemUsesDarkTheme', 1)):
-    line = f'user_pref("{key}", {value});'
+                   ('ui.systemUsesDarkTheme', 1),
+                   ('toolkit.legacyUserProfileCustomizations.stylesheets', True)):
+    literal = str(value).lower()
+    line = f'user_pref("{key}", {literal});'
     pattern = r'^user_pref\("' + re.escape(key) + r'",.*\);[ \t]*$'
     if re.search(pattern, current, re.MULTILINE):
         current = re.sub(pattern, lambda _: line, current, flags=re.MULTILINE)

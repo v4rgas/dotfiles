@@ -33,7 +33,7 @@ Zathura uses a local Moon palette adaptation; no official Zathura port was
 found. Recolored reading mode is enabled; Ctrl+R toggles original colors.
 
 Picom adds 6px rounded corners to regular windows; i3 uses 4px gaps.
-The bar and full-screen windows stay square; Rofi draws its own 6px corners. Picom starts with i3.
+The bar and full-screen windows stay square; Rofi draws its own 8px corners. Picom starts with i3.
 
 Window borders are 2px, with Rosé Pine love (#eb6f92) marking focus, matching Firefox and the selected workspace.
 
@@ -43,7 +43,7 @@ is disabled by firefox/install.py; restart Firefox after migration.
 
 Ghostty and i3bar backgrounds use 98% opacity (2% transparency). Picom must run.
 Workspace highlights have square corners because i3bar cannot round them.
-Notifications use compact padding, 6px corners, and stay on monitor 0.
+Notifications use compact padding, 8px corners, and stay on monitor 0.
 
 The setup renders wallpapers/bipboplabs.svg to ~/.local/share/wallpapers/bipboplabs.png
 and i3 restores it on login. The Python generator uses explicit dot-matrix glyphs,
@@ -59,3 +59,23 @@ Existing app dependencies: i3/i3blocks, Ghostty, Rofi, PCManFM, Zathura and a PD
 backend. The inherited cursor setting uses Qogir-dark; install that cursor theme
 if desired. Some inherited keybindings require local scripts (sttop) and apps;
 review them for the target machine. snixembed is optional for tray bridging.
+
+Corner scale (Apple-inspired, not exact macOS metrics):
+  windows: 6px (Picom; larger radii visibly clip i3 pixel borders)
+  popovers, Rofi and notifications: 8px (app-drawn where supported)
+  GTK controls and Firefox tabs/fields: 4px
+Nested shapes should use max(outer radius - inset, 0); Rofi rows remain square
+because their inset is larger than the popup radius. Fullscreen and i3bar stay
+square. Picom provides circular arcs, not Apple's continuous corner curves.
+GTK apps and Firefox need restarting after radius changes.
+Reference: https://developer.apple.com/documentation/swiftui/edge/corner/style/concentric
+
+Window-border limitation: https://github.com/yshui/picom/issues/1400
+
+Mouse side buttons 8/9 switch previous/next existing workspace on the current
+monitor while over windows/borders, replacing application Back/Forward.
+
+Picom 13 holds hidden normal windows for 16ms, then removes them in one step.
+This mitigates wallpaper flashing during fast workspace switches without a
+gradual fade. Confirmed on this setup with mouse and keyboard navigation.
+Reference: https://github.com/yshui/picom/issues/16
