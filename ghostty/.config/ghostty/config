@@ -14,3 +14,6 @@ window-padding-y = 6
 window-padding-color = background
 
 keybind = ctrl+shift+enter=new_window
+
+# Local overrides (optional, untracked)
+config-file = ?config.laptop
