@@ -86,6 +86,15 @@ cursor install. GTK2/3/4, Xsettings, Xresources and the Xcursor fallback agree o
 BreezeX-RosePine-Linux, size 24. Older apps may require restarting or a new login.
 Source: https://github.com/rose-pine/cursors
 
+Win+O keeps the blurred screenshot lock screen. Install i3lock-color with
+`yay -S i3lock-color` for Rosé Pine Moon unlock-ring and feedback colors.
+It replaces the stock i3lock package; the script also supports stock i3lock
+with its original indicator colors. Source: https://github.com/Raymo111/i3lock-color
+With i3lock-color, a centered iris ring stays visible: rose arcs react to typing,
+gold to backspace, foam to verification and love to errors. The ring radius is
+96px with a 5px stroke; the blur and JetBrains Mono text remain.
+Picom 13 eases the lock screen in over 0.5s and out over 0.22s.
+
 Vesktop: setup-desktop.sh installs the pinned Rosé Pine Moon CSS through
 vesktop/install.py. Enable Custom CSS in Vencord once; updates then reload live.
 The installer preserves unrelated QuickCSS and leaves plugin/account settings
