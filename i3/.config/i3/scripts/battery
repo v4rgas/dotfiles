@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Show system batteries only; mouse and keyboard batteries have Device scope.
+shopt -s nullglob
+blocks=()
+for battery in /sys/class/power_supply/*; do
+    [[ -r "$battery/type" && $(<"$battery/type") == Battery ]] || continue
+    [[ ! -r "$battery/scope" || $(<"$battery/scope") != Device ]] || continue
+    [[ ! -r "$battery/present" || $(<"$battery/present") != 0 ]] || continue
+    [[ -r "$battery/capacity" && -r "$battery/status" ]] || continue
+
+    percent=$(<"$battery/capacity")
+    [[ $percent =~ ^[0-9]+$ ]] || continue
+    status=$(<"$battery/status")
+    color='#e0def4'
+    suffix=''
+    case "$status" in
+        Charging) color='#9ccfd8'; suffix=' +' ;;
+        Full) suffix=' full' ;;
+        Discharging)
+            suffix=' -'
+            if (( percent <= 10 )); then
+                color='#eb6f92'
+            elif (( percent <= 20 )); then
+                color='#f6c177'
+            fi
+            ;;
+    esac
+    blocks+=("<span foreground=\"$color\">BAT $percent%$suffix</span>")
+done
+
+# An empty full_text hides the block on desktops.
+printf '%s\n' "${blocks[*]}"
