@@ -9,6 +9,18 @@
     --gap: var(--desktop-gap);
 }
 
+/* Distinguish links with the Moon gold accent; keep native decoration. */
+:root,
+.theme-dark,
+.theme-darker,
+.theme-midnight {
+    --text-link: #f6c177 !important;
+}
+:root .markup__75297 a[href],
+:root a[class*="anchor_"][href] {
+    color: #f6c177 !important;
+}
+
 /* Use the shared radii for upstream's token-based components. */
 :root,
 .theme-dark,
