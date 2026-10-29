@@ -623,3 +623,6 @@ bindsym $mod+t exec --no-startup-id rofi -show window \
 #exec --no-startup-id greenclip daemon>/dev/null
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
+
+# Secret Service (llavero) — un solo backend para todas las apps: gnome-keyring
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets,ssh
