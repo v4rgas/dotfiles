@@ -1,6 +1,9 @@
 /* Rosé Pine Moon, installed by rose-pine-gtk-theme-full. */
 @import url("/usr/share/themes/rose-pine-moon-gtk/gtk-4.0/gtk.css");
 
+/* This palette supplements libadwaita. Plain GTK4 apps need the complete
+   Adwaita-dark widget theme selected in settings.ini. */
+
 /* Compact corner scale: controls 4px, popovers 8px; windows via Picom 6px.
    Preserve circular buttons and the geometry of linked button groups. */
 button:not(.circular):not(.pill), entry { border-radius: 4px; }
