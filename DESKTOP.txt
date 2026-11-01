@@ -70,8 +70,10 @@ Pink marks the focused workspace; cyan marks a workspace visible on another moni
 Notifications use compact padding, 8px corners, and stay on monitor 0.
 
 The setup renders wallpapers/bipboplabs.svg to ~/.local/share/wallpapers/bipboplabs.png
-and i3 restores it on login. The Python generator uses explicit dot-matrix glyphs,
-with no AI assets or font dependencies. Source and SVG are stored in Git.
+and i3 restores it on login. The wallpaper reads "turning unstructured data"
+and "into actionable insights" in Rosé Pine dot-matrix lettering.
+The Python generator uses explicit glyphs with no font dependencies.
+Source and SVG are stored in Git.
 
 To include Firefox preferences during desktop setup, first launch Firefox once:
   FIREFOX_PROFILE=dev-edition-default ./setup-desktop.sh
