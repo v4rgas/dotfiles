@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+capture_args=()
+case "${1:-selection}" in
+    selection) capture_args+=(--select) ;;
+    screen) ;;
+    window) capture_args+=(--window "$(xdotool getactivewindow)") ;;
+    *) exit 2 ;;
+esac
+destination=${2:-copy}
+[[ $destination == copy || $destination == save ]] || exit 2
+
+# Capture first so cancelling a selection leaves the clipboard untouched.
+temporary=$(mktemp --suffix=.png)
+trap 'rm -f "$temporary"' EXIT
+maim "${capture_args[@]}" "$temporary" || exit 0
+
+if [[ $destination == save ]]; then
+    mkdir -p "$HOME/Pictures"
+    saved_path="$HOME/Pictures/Screenshot-$(date +%Y-%m-%d_%H-%M-%S-%N).png"
+    mv "$temporary" "$saved_path"
+    notify-send --app-name=Screenshot --icon=image-x-generic \
+        'Screenshot saved' "$saved_path" || true
+else
+    xclip -selection clipboard -t image/png -i "$temporary"
+fi

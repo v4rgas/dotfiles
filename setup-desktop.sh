@@ -7,15 +7,25 @@ if (( EUID == 0 )); then
     exit 1
 fi
 command -v pacman >/dev/null || { echo 'This setup currently supports Arch / EndeavourOS.' >&2; exit 1; }
-command -v yay >/dev/null || { echo 'Install yay first; Rosé Pine GTK is an AUR package.' >&2; exit 1; }
 
 # Pacman manages the large theme/icon assets; they do not live in this repo.
 # Keep AUR build-file review and sudo prompts enabled.
-yay -S --needed rose-pine-gtk-theme-full breeze-icons gtk-engine-murrine ttf-jetbrains-mono picom dunst feh imagemagick python curl xorg-xrdb xorg-xsetroot
+packages=(rose-pine-gtk-theme-full breeze-icons gtk-engine-murrine ttf-jetbrains-mono picom dunst feh imagemagick python curl xorg-xrdb xorg-xsetroot libqalculate xclip fd xdg-utils zoxide fzf)
+missing_packages=()
+for package in "${packages[@]}"; do
+    pacman -Q "$package" >/dev/null 2>&1 || missing_packages+=("$package")
+done
+if (( ${#missing_packages[@]} )); then
+    command -v yay >/dev/null || { echo 'Install yay first to install missing desktop packages.' >&2; exit 1; }
+    yay -S --needed "${missing_packages[@]}"
+else
+    printf 'Desktop packages already installed; skipping installation.\n'
+fi
 [[ -f /usr/share/themes/rose-pine-moon-gtk/gtk-3.0/gtk.css ]] || { echo 'rose-pine-moon-gtk was not installed.' >&2; exit 1; }
 [[ -f /usr/share/icons/rose-pine-moon-icons/index.theme ]] || { echo 'rose-pine-moon-icons was not installed.' >&2; exit 1; }
 
 "$repo_dir/setup-cursor.sh"
+"$repo_dir/setup-zoxide.sh"
 
 # Back up conflicts, then link individual files. Safe to run again after a pull.
 backup_dir="${XDG_STATE_HOME:-$HOME/.local/state}/desktop-setup/$(date +%Y%m%d-%H%M%S)-$$"

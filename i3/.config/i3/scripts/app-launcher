@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+exec rofi -modi drun -show drun \
+    -config "$HOME/.config/rofi/rofidmenu.rasi" \
+    -run-command "$HOME/.config/i3/scripts/launch-app {cmd}"
