@@ -1,11 +1,35 @@
 #!/usr/bin/env bash
 
-PICTURE=/tmp/i3lock.png
-SCREENSHOT="scrot -z $PICTURE"
+set -euo pipefail
+umask 077
+picture=$(mktemp --suffix=.png)
+trap 'rm -f -- "$picture"' EXIT
 
-BLUR="5x4"
+# Preserve the existing screenshot blur.
+scrot -z -o "$picture"
+magick "$picture" -blur 5x4 "$picture"
 
-$SCREENSHOT
-convert $PICTURE -blur $BLUR $PICTURE
-i3lock -i $PICTURE
-rm $PICTURE
+# i3lock-color installs as i3lock. Stock i3lock still works until installed.
+colors=()
+if i3lock --version 2>&1 | grep -Eqi 'color|Raymond Li'; then
+    colors=(
+        # The window is mapped before its screenshot pixmap is attached.
+        # Avoid i3lock-color's light-gray initial background during that gap.
+        --color=232136ff
+        # Rosé Pine Moon: a persistent ring with rose/gold keypress arcs.
+        # Picom handles entry/exit easing; i3lock handles authentication feedback.
+        --indicator --radius=96 --ring-width=5
+        --ind-pos="x+w/2:y+h/2"
+        --inside-color=232136ee --ring-color=c4a7e7ff
+        --insidever-color=232136ee --ringver-color=9ccfd8ff
+        --insidewrong-color=232136ee --ringwrong-color=eb6f92ff
+        --line-color=00000000 --separator-color=232136ff
+        --keyhl-color=ea9a97ff --bshl-color=f6c177ff
+        --verif-color=e0def4ff --wrong-color=eb6f92ff
+        --modif-color=ea9a97ff --layout-color=e0def4ff
+        --verif-font="JetBrains Mono" --wrong-font="JetBrains Mono"
+        --layout-font="JetBrains Mono"
+        --verif-size=16 --wrong-size=16 --layout-size=14 --modif-size=14
+    )
+fi
+i3lock "${colors[@]}" -i "$picture"

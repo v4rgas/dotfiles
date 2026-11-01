@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+(( $# )) || exit 2
+
+# Only reuse known single-window apps. Editors, browsers and terminals can
+# intentionally open additional windows. Preserve file/URL arguments.
+if (( $# == 1 )); then
+    case "${1##*/}" in
+        vesktop) criteria='[class="(?i)^vesktop$"]' ;;
+        discord|Discord) criteria='[class="(?i)^discord$"]' ;;
+        pavucontrol) exec "$(dirname "$0")/floating-panel" volume ;;
+        *) criteria='' ;;
+    esac
+    if [[ -n $criteria ]] && i3-msg "$criteria focus" >/dev/null 2>&1; then
+        exit 0
+    fi
+fi
+exec "$@"

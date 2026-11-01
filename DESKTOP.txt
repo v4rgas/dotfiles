@@ -6,6 +6,29 @@ After cloning or pulling this repository, run as your normal user:
 Requires an existing i3 desktop, yay, and internet access. The script installs
 rose-pine-gtk-theme-full (GTK themes and matching icons) and JetBrains Mono.
 Sudo and AUR review prompts remain interactive. Theme assets stay out of Git.
+Reruns install only missing packages and skip downloading an existing cursor
+theme. Config links already pointing to this checkout are left in place.
+
+Win+C opens qalc in a floating Ghostty terminal, or focuses it if already open.
+Results update as you type (autocalc is enabled on every launch). Press Enter
+to keep a result in the session. Select text and use Ctrl+Shift+C
+to copy; Ctrl+Shift+V pastes. The calculator stays open when focus moves away.
+Type quit to close it. setup-desktop.sh installs libqalculate (qalc) and xclip
+when missing.
+
+Win+/ opens fuzzy file search across the home directory. Enter opens the selected
+file in its default application. Hidden and ignored files, dependency caches
+and common build directories are excluded. Searches match filenames and paths,
+not file contents. Setup installs fd and xdg-utils only when missing.
+
+Win+D reuses an existing Vesktop, Discord or pavucontrol window when launched
+without arguments, switching to its workspace. Other applications and launches
+with file/URL arguments keep their normal behavior.
+
+Zsh directory jumping: z NAME jumps to a previously visited directory;
+zi NAME opens a fuzzy picker. Setup installs zoxide and fzf only when missing
+and appends guarded initialization to .zshrc only once, preserving its contents.
+Open a new terminal after setup. Normal cd continues to work and teaches zoxide.
 
 Links desktop, rofi, i3, ghostty, and zathura configs from this checkout. Existing files
 are backed up under ~/.local/state/desktop-setup/. Review machine-specific
@@ -43,11 +66,14 @@ is disabled by firefox/install.py; restart Firefox after migration.
 
 Ghostty and i3bar backgrounds use 98% opacity (2% transparency). Picom must run.
 Workspace highlights have square corners because i3bar cannot round them.
+Pink marks the focused workspace; cyan marks a workspace visible on another monitor.
 Notifications use compact padding, 8px corners, and stay on monitor 0.
 
 The setup renders wallpapers/bipboplabs.svg to ~/.local/share/wallpapers/bipboplabs.png
-and i3 restores it on login. The Python generator uses explicit dot-matrix glyphs,
-with no AI assets or font dependencies. Source and SVG are stored in Git.
+and i3 restores it on login. The wallpaper reads "turning unstructured data"
+and "into actionable insights" in Rosé Pine dot-matrix lettering.
+The Python generator uses explicit glyphs with no font dependencies.
+Source and SVG are stored in Git.
 
 To include Firefox preferences during desktop setup, first launch Firefox once:
   FIREFOX_PROFILE=dev-edition-default ./setup-desktop.sh
@@ -85,6 +111,15 @@ under ~/.local/share/icons. Assets stay out of Git; no sudo is required for the
 cursor install. GTK2/3/4, Xsettings, Xresources and the Xcursor fallback agree on
 BreezeX-RosePine-Linux, size 24. Older apps may require restarting or a new login.
 Source: https://github.com/rose-pine/cursors
+
+Win+O keeps the blurred screenshot lock screen. Install i3lock-color with
+`yay -S i3lock-color` for Rosé Pine Moon unlock-ring and feedback colors.
+It replaces the stock i3lock package; the script also supports stock i3lock
+with its original indicator colors. Source: https://github.com/Raymo111/i3lock-color
+With i3lock-color, a centered iris ring stays visible: rose arcs react to typing,
+gold to backspace, foam to verification and love to errors. The ring radius is
+96px with a 5px stroke; the blur and JetBrains Mono text remain.
+Picom 13 eases the lock screen in over 0.5s and out over 0.22s.
 
 Vesktop: setup-desktop.sh installs the pinned Rosé Pine Moon CSS through
 vesktop/install.py. Enable Custom CSS in Vencord once; updates then reload live.

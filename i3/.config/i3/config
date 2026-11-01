@@ -289,22 +289,22 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# Redirect sound to headphones
-bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
+# Open volume controls
+bindsym $mod+p exec --no-startup-id ~/.config/i3/scripts/floating-panel volume
 
 ## App shortcuts
+bindsym $mod+c exec --no-startup-id ~/.config/i3/scripts/calculator
+bindsym $mod+slash exec --no-startup-id ~/.config/i3/scripts/file-search
 bindsym $mod+w exec --no-startup-id /usr/bin/firefox-developer-edition
 bindsym $mod+n exec --no-startup-id /usr/bin/pcmanfm
 
-# Screenshots
-bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
-
-## Clipboard Screenshots
-bindsym Ctrl+Print exec --no-startup-id sh -c 'f=$(mktemp --suffix=.png) && maim "$f" && xclip -selection clipboard -t image/png -i "$f" && rm -f "$f"'
-bindsym Ctrl+$mod+Print exec --no-startup-id sh -c 'f=$(mktemp --suffix=.png) && maim --window "$(xdotool getactivewindow)" "$f" && xclip -selection clipboard -t image/png -i "$f" && rm -f "$f"'
-bindsym Ctrl+Shift+Print exec --no-startup-id sh -c 'f=$(mktemp --suffix=.png) && maim --select "$f" && xclip -selection clipboard -t image/png -i "$f" && rm -f "$f"'
+# Screenshots: selection by default, Ctrl for all screens, Shift to save.
+bindsym --release Print exec --no-startup-id ~/.config/i3/scripts/screenshot selection copy
+bindsym --release Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot selection save
+bindsym --release Ctrl+Print exec --no-startup-id ~/.config/i3/scripts/screenshot screen copy
+bindsym --release Ctrl+Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot screen save
+bindsym --release $mod+Print exec --no-startup-id ~/.config/i3/scripts/screenshot window copy
+bindsym --release $mod+Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot window save
 
 
 # Power Profiles menu switcher (rofi)
@@ -475,11 +475,13 @@ exec_always --no-startup-id autotiling
 # set floating (nontiling) for apps needing it
 for_window [class="Yad" instance="yad"] floating enable
 for_window [class="Galculator" instance="galculator"] floating enable
+for_window [class="^com\.micelio\.Calculator$"] floating enable, resize set 800 500, move position center
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 
 # set floating (nontiling) for special apps
 for_window [class="Xsane" instance="xsane"] floating enable
-for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="(?i)^pavucontrol$"] floating enable, resize set 900 620, move position center
+for_window [class="^com\.micelio\.SystemMonitor$"] floating enable, resize set 1100 720, move position center
 for_window [class="qt5ct" instance="qt5ct"] floating enable
 for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
 for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
@@ -548,23 +550,23 @@ client.background       #232136
 # Start i3bar to display a workspace bar
 # (plus the system information i3status finds out, if available)
 bar {
-    i3bar_command i3bar --transparency
+    i3bar_command i3bar
     font pango: JetBrains Mono 9
     status_command exec i3blocks -c ~/.config/i3/i3blocks.conf
     position top
-    padding 0 14 0 0
-    tray_padding 3
+    padding 2 14 2 0
+    tray_padding 5
     separator_symbol "|"
     strip_workspace_numbers yes
     colors {
-        background #232136fa
+        background #232136
         statusline #e0def4
         separator #44415a
-        focused_workspace #eb6f92 #2d2a45fa #ebbcba
-        active_workspace #232136fa #232136fa #908caa
-        inactive_workspace #232136fa #232136fa #908caa
-        urgent_workspace #eb6f92 #232136fa #eb6f92
-        binding_mode #232136fa #232136fa #f6c177
+        focused_workspace #eb6f92 #2d2a45 #ebbcba
+        active_workspace #9ccfd8 #393552 #9ccfd8
+        inactive_workspace #232136 #232136 #908caa
+        urgent_workspace #eb6f92 #232136 #eb6f92
+        binding_mode #232136 #232136 #f6c177
     }
 }
 
@@ -605,8 +607,7 @@ bar {
 
 ## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
 
-bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
-		-config ~/.config/rofi/rofidmenu.rasi
+bindsym $mod+d exec --no-startup-id ~/.config/i3/scripts/app-launcher
 
 #bindsym F9 exec --no-startup-id rofi -modi drun -show drun \
 #		-config ~/.config/rofi/rofidmenu.rasi
