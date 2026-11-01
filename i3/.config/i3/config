@@ -178,6 +178,7 @@ bindcode $mod+Shift+90 	 move container to workspace  $ws10
 
 # start a terminal
 bindsym $mod+Return exec --no-startup-id ghostty
+bindsym $mod+Shift+F23 exec --no-startup-id ghostty
 
 # start sttop in a terminal
 bindsym $mod+m exec --no-startup-id ghostty -e /home/juan/.local/bin/sttop
