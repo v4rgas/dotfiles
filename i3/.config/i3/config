@@ -244,7 +244,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# bindsym $mod+s layout stacking  # replaced by neru grid
 bindsym $mod+g layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -308,6 +308,9 @@ bindsym --release $mod+Shift+Print exec --no-startup-id ~/.config/i3/scripts/scr
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
+
+# Neru: keyboard-driven mouse (Esc exits any mode)
+bindsym $mod+s exec --no-startup-id neru grid
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -392,6 +395,9 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # https://github.com/jceb/dex
 #exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
 exec --no-startup-id dex --autostart --environment i3
+
+# Neru daemon (needed for the $mod+s grid binding)
+exec --no-startup-id neru launch
 
 # start welcome app
 #exec --no-startup-id sh /usr/share/endeavouros/scripts/welcome --startdelay=3 

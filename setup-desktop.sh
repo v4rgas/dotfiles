@@ -10,7 +10,7 @@ command -v pacman >/dev/null || { echo 'This setup currently supports Arch / End
 
 # Pacman manages the large theme/icon assets; they do not live in this repo.
 # Keep AUR build-file review and sudo prompts enabled.
-packages=(rose-pine-gtk-theme-full breeze-icons gtk-engine-murrine ttf-jetbrains-mono picom dunst feh imagemagick python curl xorg-xrdb xorg-xsetroot libqalculate xclip fd xdg-utils zoxide fzf)
+packages=(rose-pine-gtk-theme-full breeze-icons gtk-engine-murrine ttf-jetbrains-mono picom dunst feh imagemagick python curl xorg-xrdb xorg-xsetroot libqalculate xclip fd xdg-utils zoxide fzf neru-bin rofi)
 missing_packages=()
 for package in "${packages[@]}"; do
     pacman -Q "$package" >/dev/null 2>&1 || missing_packages+=("$package")
@@ -29,7 +29,7 @@ fi
 
 # Back up conflicts, then link individual files. Safe to run again after a pull.
 backup_dir="${XDG_STATE_HOME:-$HOME/.local/state}/desktop-setup/$(date +%Y%m%d-%H%M%S)-$$"
-for package in desktop rofi i3 ghostty zathura; do
+for package in desktop rofi i3 ghostty zathura neru; do
     while IFS= read -r -d '' source_file; do
         relative=${source_file#"$repo_dir/$package/"}
         case "$relative" in
