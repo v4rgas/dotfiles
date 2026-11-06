@@ -15,5 +15,8 @@ window-padding-color = background
 
 keybind = ctrl+shift+enter=new_window
 
+# Close directly, including when a process is running.
+confirm-close-surface = false
+
 # Local overrides (optional, untracked)
 config-file = ?config.laptop

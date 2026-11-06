@@ -125,3 +125,14 @@ Vesktop: setup-desktop.sh installs the pinned Rosé Pine Moon CSS through
 vesktop/install.py. Enable Custom CSS in Vencord once; updates then reload live.
 The installer preserves unrelated QuickCSS and leaves plugin/account settings
 local. See vesktop/README.txt for source and standalone setup instructions.
+
+Win+S opens the neru grid (keyboard-driven mouse). Type a cell's letters to
+move there, then Space to left-click, Ctrl+Space to right-click, Shift+V to
+grab/let go for selecting text, . to scroll there, Esc to exit. Press ? in the
+grid for a searchable menu of every action. setup-desktop.sh installs neru-bin
+and rofi; the daemon starts with i3 (neru launch).
+
+ranger adds two keys on top of its defaults: yc copies the selected files to
+the clipboard (one image pastes as the image itself, so Ctrl+V in Discord
+uploads it; anything else as file links, like PCManFM), and yD opens them in
+ripdrag to drag into Discord or any other window.
