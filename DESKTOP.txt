@@ -131,3 +131,8 @@ move there, then Space to left-click, Ctrl+Space to right-click, Shift+V to
 grab/let go for selecting text, . to scroll there, Esc to exit. Press ? in the
 grid for a searchable menu of every action. setup-desktop.sh installs neru-bin
 and rofi; the daemon starts with i3 (neru launch).
+
+ranger adds two keys on top of its defaults: yc copies the selected files to
+the clipboard (one image pastes as the image itself, so Ctrl+V in Discord
+uploads it; anything else as file links, like PCManFM), and yD opens them in
+ripdrag to drag into Discord or any other window.
